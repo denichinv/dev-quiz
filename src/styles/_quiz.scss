@@ -1,0 +1,101 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+.correct {
+  @include mix.answer-state(var.$success-color);
+}
+
+.incorrect {
+  @include mix.answer-state(var.$error-color);
+}
+
+button {
+  @include mix.button(
+    $padding: 0.75rem 1.25rem,
+    $border-radius: var.$border-radius-sm
+  );
+  margin: var.$spacing-sm;
+}
+
+.quiz-container {
+  @include mix.card(
+    $bg-color: var.$background-lighter,
+    $max-width: var.$max-width-lg
+  );
+}
+
+.quiz-question {
+  @include mix.text-style(
+    $size: var.$font-size-xl,
+    $margin-bottom: var.$spacing-md
+  );
+}
+
+.quiz-answers {
+  @include mix.flex-center(column, 0.75rem);
+}
+
+.quiz-button {
+  @include mix.button(
+    $bg-color: transparent,
+    $text-color: var.$text-color,
+    $hover-darken: 0
+  );
+
+  &:hover {
+    background-color: darken(var.$button-hover-base, 10%);
+  }
+
+  &.correct {
+    @include mix.answer-state(var.$success-light, var.$text-color);
+  }
+
+  &.incorrect {
+    @include mix.answer-state(var.$error-light, var.$text-color);
+  }
+}
+
+.score {
+  @include mix.text-style($size: var.$font-size-md, $align: center);
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: var.$spacing-xl;
+  border: 1px solid var.$border-color-light;
+  border-radius: var.$border-radius-xl;
+  padding: var.$spacing-sm var.$spacing-md;
+  display: inline-block;
+  box-shadow: var.$box-shadow;
+}
+
+.loading-screen {
+  @include mix.flex-center(row);
+  @include mix.text-style(
+    $size: var.$font-size-xxl,
+    $weight: var.$font-weight-bold,
+    $color: var.$text-color
+  );
+  @include mix.loading-animation();
+  min-height: 50vh;
+}
+
+.feedback {
+  @include mix.text-style(
+    $size: var.$font-size-lg,
+    $weight: var.$font-weight-bold,
+    $align: center
+  );
+  margin-top: var.$spacing-md;
+
+  p {
+    color: var.$text-secondary;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin-bottom: var.$spacing-md;
+    background-color: var.$loading-gray;
+  }
+}

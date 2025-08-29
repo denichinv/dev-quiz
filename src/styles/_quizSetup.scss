@@ -1,0 +1,40 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+.setup-container {
+  @include mix.card($max-width: var.$max-width-sm);
+  text-align: center;
+}
+
+h1 {
+  @include mix.text-style(
+    $size: var.$font-size-xxxl,
+    $margin-bottom: var.$spacing-xl
+  );
+}
+
+.setup-field {
+  margin-bottom: var.$spacing-lg;
+  text-align: left;
+
+  label {
+    @include mix.text-style(
+      $weight: var.$font-weight-semibold,
+      $margin-bottom: var.$spacing-sm
+    );
+    display: block;
+  }
+
+  select {
+    @include mix.form-input();
+  }
+}
+
+.setup-button {
+  @include mix.button(
+    $bg-color: var.$accent-blue,
+    $font-size: var.$font-size-md,
+    $transition: var.$transition-medium
+  );
+  font-weight: var.$font-weight-bold;
+}
